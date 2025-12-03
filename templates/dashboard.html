@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2em;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .stats {
+            display: flex;
+            gap: 2em;
+            margin-bottom: 2em;
+        }
+        .stat {
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .actions {
+            margin-bottom: 2em;
+        }
+        .button {
+            padding: 0.5em 1em;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.5em;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emogo Dashboard</h1>
+
+    <div class="actions">
+        <a href="/export" class="button">Export CSV</a>
+        <a href="/download" class="button">Download All Videos</a>
+    </div>
+
+    <h2>Summary Statistics</h2>
+    <div class="stats">
+        <div class="stat">
+            <strong>Total Sessions:</strong> {{ session_count }}
+        </div>
+        <div class="stat">
+            <strong>Total Devices:</strong> {{ device_count }}
+        </div>
+    </div>
+
+    <h2>Sessions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Device ID</th>
+                <th>Timestamp</th>
+                <th>Emotion Score</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Video</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session._id }}</td>
+                <td>{{ session.device_id }}</td>
+                <td>{{ session.timestamp }}</td>
+                <td>{{ session.emotion_score }}</td>
+                <td>{{ session.latitude }}</td>
+                <td>{{ session.longitude }}</td>
+                <td>
+                    {% if session.video_filename %}
+                        <a href="/api/sessions/{{ session._id }}/video" download>Download Video</a>
+                    {% else %}
+                        No video
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

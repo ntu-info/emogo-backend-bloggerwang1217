@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from config import settings
 from models.session import mongodb_client
-from routes import health, sessions
+from routes import health, sessions, dashboard
 
 
 @asynccontextmanager
@@ -39,6 +39,7 @@ app.add_middleware(
 # Include routers
 app.include_router(health.router)
 app.include_router(sessions.router)
+app.include_router(dashboard.router)
 
 
 @app.get("/")

@@ -4,3 +4,4 @@ pymongo==4.10.1
 python-dotenv==1.0.1
 python-multipart==0.0.20
 pydantic>=2.12.0
+Jinja2
