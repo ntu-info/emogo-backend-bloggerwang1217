@@ -53,8 +53,8 @@
     <h1>Emogo Dashboard</h1>
 
     <div class="actions">
-        <a href="/export" class="button">Export CSV</a>
-        <a href="/download" class="button">Download All Videos</a>
+        <a href="export" class="button">Export CSV</a>
+        <a href="download" class="button">Download All Videos</a>
     </div>
 
     <h2>Summary Statistics</h2>
@@ -91,7 +91,7 @@
                 <td>{{ session.longitude }}</td>
                 <td>
                     {% if session.video_filename %}
-                        <a href="/api/sessions/{{ session._id }}/video" download>Download Video</a>
+                        <a href="api/sessions/{{ session._id }}/video" download>Download Video</a>
                     {% else %}
                         No video
                     {% endif %}
