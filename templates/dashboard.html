@@ -90,7 +90,7 @@
                 <td>{{ session.latitude }}</td>
                 <td>{{ session.longitude }}</td>
                 <td>
-                    {% if session.video_filename %}
+                    {% if session.video_id %}
                         <a href="api/sessions/{{ session._id }}/video" download>Download Video</a>
                     {% else %}
                         No video

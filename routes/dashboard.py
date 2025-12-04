@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
 from models.session import get_db, MongoDBClient
+from bson import ObjectId
 import io
 import csv
 import zipfile
@@ -73,15 +74,19 @@ async def download_videos(db: MongoDBClient = Depends(get_db)):
     """
     fs = db.get_gridfs()
     sessions_collection = db.get_sessions_collection()
-    sessions_with_video = sessions_collection.find({"video_filename": {"$ne": None}})
+    sessions_with_video = sessions_collection.find({"video_id": {"$ne": None}})
 
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
         for session in sessions_with_video:
             video_id = session.get("video_id")
             if video_id:
-                grid_out = fs.get(video_id)
-                zip_file.writestr(f"{session.get('video_filename')}", grid_out.read())
+                try:
+                    grid_out = fs.get(ObjectId(video_id))
+                    filename = grid_out.filename or f"{video_id}.mp4"
+                    zip_file.writestr(f"{filename}", grid_out.read())
+                except Exception as e:
+                    print(f"Warning: Failed to retrieve video {video_id}: {e}")
 
     zip_buffer.seek(0)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
