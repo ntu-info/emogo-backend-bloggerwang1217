@@ -14,7 +14,7 @@ class Settings:
     MONGODB_DATABASE: str = os.getenv("MONGODB_DATABASE", "emo_now")
 
     # API settings
-    API_TITLE: str = "Emo Now API"
+    API_TITLE: str = "I'm Emo Now API"
     API_VERSION: str = "1.0.0"
     API_DESCRIPTION: str = "Emotion tracking application backend API"
 
