@@ -47,10 +47,11 @@ app.include_router(dashboard.router)
 async def root():
     """Root endpoint with API information"""
     return {
-        "message": "Welcome to Emo Now API",
+        "message": "Welcome to I'm Emo Now API",
         "version": settings.API_VERSION,
         "docs": "/docs",
         "health": "/health",
+        "dashboard": "/dashboard",
     }
 
 
