@@ -25,6 +25,7 @@ app = FastAPI(
     version=settings.API_VERSION,
     description=settings.API_DESCRIPTION,
     lifespan=lifespan,
+    root_path="/im-emo-now",
 )
 
 # Configure CORS
