@@ -7,7 +7,7 @@ FastAPI backend for the "I'm Emo Now" emotion tracking mobile application. This 
 
 The frontend mobile app is available here: https://github.com/bloggerwang1217/I-m-emo-now
 
-This app allows users to directly upload emotion metadata and videos to this backend API.
+The app uploads emotion tracking data (metadata and videos) directly to this backend server.
 
 ## API Endpoints
 
