@@ -7,6 +7,11 @@ FastAPI backend for the "I'm Emo Now" emotion tracking mobile application. This 
 
 ## API Endpoints
 
+Please checkout the links here:
+
+- For API information: https://bloggermandolin.com/im-emo-now/docs
+- For the export/download dashboard: https://bloggermandolin.com/im-emo-now/dashboard
+
 ### Health & Info
 - `GET /` - API information and available endpoints
 - `GET /health` - Check API and database connectivity
