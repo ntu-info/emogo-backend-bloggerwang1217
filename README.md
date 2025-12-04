@@ -5,6 +5,28 @@
 
 FastAPI backend for the "I'm Emo Now" emotion tracking mobile application. This API handles emotion session management, GPS tracking, and video storage using MongoDB and GridFS.
 
+## API Endpoints
+
+### Health & Info
+- `GET /` - API information and available endpoints
+- `GET /health` - Check API and database connectivity
+
+### Sessions Management
+- `POST /api/sessions` - Create a new emotion session
+- `GET /api/sessions` - Get all sessions for a device (query: `device_id`, `limit`, `skip`)
+- `GET /api/sessions/{session_id}` - Get a specific session
+- `DELETE /api/sessions/{session_id}` - Delete a session and its video
+
+### Video Upload & Download
+- `POST /api/sessions/{session_id}/video` - Upload video file for a session
+- `GET /api/sessions/{session_id}/video` - Download video file for a session
+
+### Data Export
+- `GET /api/sessions/export/csv` - Export sessions as CSV (optional filter: `device_id`)
+- `GET /dashboard` - Dashboard page with statistics
+- `GET /dashboard/export` - Export all sessions data as CSV
+- `GET /dashboard/download` - Download all videos as ZIP file
+
 ## Features
 
 - 📱 Device-based session tracking (no registration required)
@@ -86,19 +108,7 @@ Once running, visit:
 - **Interactive API Docs**: http://localhost:8000/docs
 - **Alternative Docs**: http://localhost:8000/redoc
 
-## API Endpoints
-
-### Health Check
-- `GET /health` - Check API and database connectivity
-
-### Sessions
-- `POST /api/sessions` - Create a new emotion session
-- `POST /api/sessions/{session_id}/video` - Upload video for a session
-- `GET /api/sessions?device_id={device_id}` - Get all sessions for a device
-- `GET /api/sessions/{session_id}` - Get a specific session
-- `GET /api/sessions/{session_id}/video` - Download session video
-- `GET /api/sessions/export/csv` - Export sessions as CSV
-- `DELETE /api/sessions/{session_id}` - Delete a session
+See the **API Endpoints** section above for a complete list of available routes.
 
 ### Example: Create Session
 
